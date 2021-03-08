@@ -7,6 +7,6 @@ console.log("Bye")
 function getUser(callback){
     setTimeout(() => {
         callback(['qwe','qwdqw','qwdqwd']);
-    }, 2000);
+    }, 1000);
 
 }
