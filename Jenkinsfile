@@ -1,7 +1,6 @@
 pipeline {
     agent  any
     stages {
-        stage('deployments') {
               stage('build') {
                     steps {
                         echo 'build done'
@@ -26,8 +25,6 @@ pipeline {
                          sleep(5)
                     }
                 }
-            
-        }
         
     }
 }
