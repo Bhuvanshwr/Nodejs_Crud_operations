@@ -3,9 +3,14 @@ pipeline {
     stages {
         stage('deployments') {
             parallel {
-                stage('deploy to stg') {
+                stage('deploy to dd1') {
                     steps {
                         echo 'stg deployment done'
+                    }
+                }
+                 stage('deploy to mo') {
+                    steps {
+                        echo 'prod deployment done'
                     }
                 }
                 stage('deploy to prod') {
