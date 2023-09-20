@@ -1,8 +1,11 @@
 pipeline {
     agent  any
     stages {
-        stage('deployments') {
-            parallel {
+          stage('build') {
+                    steps {
+                        echo 'build done'
+                    }
+                }
                 stage('deploy to stg') {
                     steps {
                         echo 'stg deployment done'
@@ -13,7 +16,5 @@ pipeline {
                         echo 'prod deployment done'
                     }
                 }
-            }
-        }
     }
 }
