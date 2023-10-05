@@ -1,6 +1,6 @@
 name: Demo
-on:
-  workflow_dispatch:
+on: push
+  
 jobs:
   build:
     runs-on: ubuntu-latest
