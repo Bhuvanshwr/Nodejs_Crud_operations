@@ -13,9 +13,6 @@ jobs:
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4.1.0
-      with:
-        fetch-depth: 20
-        lfs: true
     - run: echo "Bhuvan the code..."
     - run: echo "Compile complete."
     - run: echo "testing the build"
@@ -25,9 +22,6 @@ jobs:
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4.1.0
-      with:
-        fetch-depth: 20
-        lfs: true
     - run: echo "Running unit tests... This will take about 60 seconds."
     - run: sleep 60
     - run: echo "Code coverage is 90%"
@@ -37,9 +31,6 @@ jobs:
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4.1.0
-      with:
-        fetch-depth: 20
-        lfs: true
     - run: echo "Linting code... This will take about 10 seconds."
     - run: sleep 10
     - run: echo "No lint issues found."
@@ -52,8 +43,5 @@ jobs:
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4.1.0
-      with:
-        fetch-depth: 20
-        lfs: true
     - run: echo "Deploying application..."
     - run: echo "Application successfully deployed."
