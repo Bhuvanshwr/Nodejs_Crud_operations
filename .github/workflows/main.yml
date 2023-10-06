@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:10.15.3
-    timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4.1.0
       with:
         fetch-depth: 20
         lfs: true
+        ref: main
     - run: echo "Bhuvan the code..."
     - run: echo "Compile complete."
     - run: echo "testing the build"
