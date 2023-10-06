@@ -1,29 +1,59 @@
-name: Demo
+name: bhuvanshwr1/Nodejs_Crud_operations
 on:
+  push:
   workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
 jobs:
-  build:
+  build-job:
     runs-on: ubuntu-latest
+    container:
+      image: node:10.15.3
+    timeout-minutes: 60
     steps:
-    - name: checkout
-      uses: actions/checkout@v4.1.0
-    - name: echo message
-      run: echo build done
-  deploy_to_stg:
-    name: deploy to stg
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "Bhuvan the code..."
+    - run: echo "Compile complete."
+    - run: echo "testing the build"
+  unit-test-job:
+    needs: build-job
     runs-on: ubuntu-latest
-    needs: build
+    timeout-minutes: 60
     steps:
-    - name: checkout
-      uses: actions/checkout@v4.1.0
-    - name: echo message
-      run: echo stg deployment done
-  deploy_to_prod:
-    name: deploy to prod
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "Running unit tests... This will take about 60 seconds."
+    - run: sleep 60
+    - run: echo "Code coverage is 90%"
+  lint-test-job:
+    needs: build-job
     runs-on: ubuntu-latest
-    needs: deploy_to_stg
+    timeout-minutes: 60
     steps:
-    - name: checkout
-      uses: actions/checkout@v4.1.0
-    - name: echo message
-      run: echo prod deployment done
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "Linting code... This will take about 10 seconds."
+    - run: sleep 10
+    - run: echo "No lint issues found."
+  deploy-job:
+    needs:
+    - unit-test-job
+    - lint-test-job
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "Deploying application..."
+    - run: echo "Application successfully deployed."
